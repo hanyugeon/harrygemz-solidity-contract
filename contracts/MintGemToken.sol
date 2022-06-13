@@ -18,11 +18,11 @@ contract MintGemToken is ERC721Enumerable, Ownable {
     uint256 gemTokenType;
   }
 
-  mapping(uint256 => GemTokenData) public _tokenDataById;
+  mapping(uint256 => GemTokenData) public tokenDataById;
 
   function tokenURI(uint256 _tokenId) override public view returns (string memory) {
-    string memory gemTokenRank = Strings.toString(_tokenDataById[_tokenId].gemTokenRank);
-    string memory gemTokenType = Strings.toString(_tokenDataById[_tokenId].gemTokenType);
+    string memory gemTokenRank = Strings.toString(tokenDataById[_tokenId].gemTokenRank);
+    string memory gemTokenType = Strings.toString(tokenDataById[_tokenId].gemTokenType);
 
     return string(abi.encodePacked(metadataURI, '/', gemTokenRank, '/', gemTokenType, '.json')); 
   }
@@ -30,8 +30,76 @@ contract MintGemToken is ERC721Enumerable, Ownable {
   function mintGemToken() public  {
     uint256 tokenId = totalSupply() + 1;
 
-    _tokenDataById[tokenId] = GemTokenData(1, 1);
+    GemTokenData memory randomTokenData = randomGenerater(msg.sender, tokenId);
+
+    tokenDataById[tokenId] = GemTokenData(randomTokenData.gemTokenRank, randomTokenData.gemTokenType);
 
     _mint(msg.sender, tokenId);
+  }
+
+  function randomGenerater(address _msgSender, uint256 _tokenId) private view returns (GemTokenData memory) {
+    uint256 randomNum = uint256(keccak256(abi.encodePacked(blockhash(block.timestamp), _msgSender, _tokenId))) % 100;
+
+    GemTokenData memory randomTokenData;
+
+    if (randomNum < 5) {
+      if (randomNum == 1) {
+        randomTokenData.gemTokenRank = 4;
+        randomTokenData.gemTokenType = 1;
+      } else if (randomNum == 2) {
+        randomTokenData.gemTokenRank = 4;
+        randomTokenData.gemTokenType = 2;
+      } else if (randomNum == 3) {
+        randomTokenData.gemTokenRank = 4;
+        randomTokenData.gemTokenType = 3;
+      } else {
+        randomTokenData.gemTokenRank = 4;
+        randomTokenData.gemTokenType = 4;
+      }
+    } else if (randomNum < 13) {
+      if (randomNum < 7) {
+        randomTokenData.gemTokenRank = 3;
+        randomTokenData.gemTokenType = 1;
+      } else if (randomNum < 9) {
+        randomTokenData.gemTokenRank = 3;
+        randomTokenData.gemTokenType = 2;
+      } else if (randomNum < 11) {
+        randomTokenData.gemTokenRank = 3;
+        randomTokenData.gemTokenType = 3;
+      } else {
+        randomTokenData.gemTokenRank = 3;
+        randomTokenData.gemTokenType = 4;
+      }
+    } else if (randomNum < 37) {
+      if (randomNum < 19) {
+        randomTokenData.gemTokenRank = 2;
+        randomTokenData.gemTokenType = 1;
+      } else if (randomNum < 25) {
+        randomTokenData.gemTokenRank = 2;
+        randomTokenData.gemTokenType = 2;
+      } else if (randomNum < 31) {
+        randomTokenData.gemTokenRank = 2;
+        randomTokenData.gemTokenType = 3;
+      } else {
+        randomTokenData.gemTokenRank = 2;
+        randomTokenData.gemTokenType = 4;
+      }
+    } else {
+      if (randomNum < 52) {
+        randomTokenData.gemTokenRank = 1;
+        randomTokenData.gemTokenType = 1;
+      } else if (randomNum < 68) {
+        randomTokenData.gemTokenRank = 1;
+        randomTokenData.gemTokenType = 2;
+      } else if (randomNum < 84) {
+        randomTokenData.gemTokenRank = 1;
+        randomTokenData.gemTokenType = 3;
+      } else {
+        randomTokenData.gemTokenRank = 1;
+        randomTokenData.gemTokenType = 4;
+      }
+    }
+
+    return randomTokenData;
   }
 }
