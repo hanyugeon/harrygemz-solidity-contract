@@ -4,8 +4,9 @@ pragma solidity ^0.8.7;
 
 import "@openzeppelin/contracts/token/ERC721/extensions/ERC721Enumerable.sol";
 import "@openzeppelin/contracts/utils/Strings.sol"; // toString() 사용가능 (uint256를 ASCII string 으로 형변환)
+import "@openzeppelin/contracts/access/Ownable.sol";  // Ownable을 통한 소유권 부여
 
-contract MintGemToken is ERC721Enumerable {
+contract MintGemToken is ERC721Enumerable, Ownable {
   string public metadataURI;
 
   constructor(string memory _name, string memory _symbol, string memory _metadataURI) ERC721(_name, _symbol) {
