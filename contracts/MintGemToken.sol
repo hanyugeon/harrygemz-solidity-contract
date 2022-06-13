@@ -7,6 +7,10 @@ import "@openzeppelin/contracts/utils/Strings.sol"; // toString() 사용가능 (
 import "@openzeppelin/contracts/access/Ownable.sol";  // Ownable을 통한 소유권 부여
 
 contract MintGemToken is ERC721Enumerable, Ownable {
+  uint256 constant public MAX_TOKEN_COUNT = 1000;
+  uint256 constant public TOKEN_RANK_LENGTH = 4;
+  uint256 constant public TOKEN_TYPE_LENGTH = 4;
+
   string public metadataURI;
 
   // 10^18 Peb = 1 Klay
@@ -21,28 +25,45 @@ contract MintGemToken is ERC721Enumerable, Ownable {
     uint256 gemTokenType;
   }
 
-  mapping(uint256 => GemTokenData) public tokenDataById;
+  mapping(uint256 => GemTokenData) public gemTokenDataById;
+
+  uint256 [TOKEN_RANK_LENGTH][TOKEN_TYPE_LENGTH] public gemTokenCount;
 
   function tokenURI(uint256 _tokenId) override public view returns (string memory) {
-    string memory gemTokenRank = Strings.toString(tokenDataById[_tokenId].gemTokenRank);
-    string memory gemTokenType = Strings.toString(tokenDataById[_tokenId].gemTokenType);
+    string memory gemTokenRank = Strings.toString(gemTokenDataById[_tokenId].gemTokenRank);
+    string memory gemTokenType = Strings.toString(gemTokenDataById[_tokenId].gemTokenType);
 
     return string(abi.encodePacked(metadataURI, '/', gemTokenRank, '/', gemTokenType, '.json')); 
   }
 
   function mintGemToken() public payable {
     require(gemTokenPrice <= msg.value, "Not enough Klay.");
+    require(MAX_TOKEN_COUNT > totalSupply(), "The mint limit has been exceeded.");
 
     uint256 tokenId = totalSupply() + 1;
 
     GemTokenData memory randomTokenData = randomGenerater(msg.sender, tokenId);
 
-    tokenDataById[tokenId] = GemTokenData(randomTokenData.gemTokenRank, randomTokenData.gemTokenType);
+    gemTokenDataById[tokenId] = GemTokenData(randomTokenData.gemTokenRank, randomTokenData.gemTokenType);
+
+    gemTokenCount[randomTokenData.gemTokenRank - 1][randomTokenData.gemTokenType - 1] += 1;
 
     // Klay를 전송하는 함수, transfer()를 통해 일정 gas비 소모, 실패시에 에러를 발생시킴.
     payable(owner()).transfer(msg.value);
 
     _mint(msg.sender, tokenId);
+  }
+
+  function getGemTokenCount() public view returns(uint[TOKEN_RANK_LENGTH][TOKEN_TYPE_LENGTH] memory) {
+    return gemTokenCount;
+  }
+
+  function getGemTokenRank(uint256 _tokenId) public view returns (uint256) {
+    return gemTokenDataById[_tokenId].gemTokenRank;
+  }
+
+  function getGemTokenType(uint256 _tokenId) public view returns (uint256) {
+    return gemTokenDataById[_tokenId].gemTokenType;
   }
 
   function randomGenerater(address _msgSender, uint256 _tokenId) private view returns (GemTokenData memory) {
