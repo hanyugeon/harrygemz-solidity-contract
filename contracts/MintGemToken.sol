@@ -3,8 +3,8 @@
 pragma solidity ^0.8.7;
 
 import "@openzeppelin/contracts/token/ERC721/extensions/ERC721Enumerable.sol";
-import "@openzeppelin/contracts/utils/Strings.sol"; // toString() 사용가능 (uint256를 ASCII string 으로 형변환)
-import "@openzeppelin/contracts/access/Ownable.sol";  // Ownable을 통한 소유권 부여
+import "@openzeppelin/contracts/utils/Strings.sol";
+import "@openzeppelin/contracts/access/Ownable.sol";
 
 contract MintGemToken is ERC721Enumerable, Ownable {
   uint256 constant public MAX_TOKEN_COUNT = 1000;
@@ -48,7 +48,6 @@ contract MintGemToken is ERC721Enumerable, Ownable {
 
     gemTokenCount[randomTokenData.gemTokenRank - 1][randomTokenData.gemTokenType - 1] += 1;
 
-    // Klay를 전송하는 함수, transfer()를 통해 일정 gas비 소모, 실패시에 에러를 발생시킴.
     payable(owner()).transfer(msg.value);
 
     _mint(msg.sender, tokenId);
