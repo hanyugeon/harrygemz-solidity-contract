@@ -27,4 +27,30 @@ contract SaleGemToken {
 
     onSaleTokens.push(_tokenId);
   }
+
+  function purchaseGemToken(uint256 _tokenId) public payable {
+    address tokenOwner = mintGemToken.ownerOf(_tokenId);
+
+    require(tokenPricesById[_tokenId] > 0, "Token is not on sale");
+    require(tokenPricesById[_tokenId] <= msg.value, "Can't buy it at a lower price");
+    require(tokenOwner != msg.sender, "owner cant buy it selves");
+
+    payable(tokenOwner).transfer(msg.value);
+
+    // safeTransferFrom(): from이 tokenId를 소유해야함, to는 보낼사람, tokenId는 해당 말 그대로 tokenId
+    mintGemToken.safeTransferFrom(tokenOwner, msg.sender, _tokenId);
+
+    tokenPricesById[_tokenId] = 0;
+
+    popOnSaleToken(_tokenId);
+  }
+
+  function popOnSaleToken(uint256 _tokenId) private {
+    for (uint256 i = 0; i < onSaleTokens.length; i++) {
+      if (onSaleTokens[i] == _tokenId) {
+        onSaleTokens[i] = onSaleTokens[onSaleTokens.length - 1];
+        onSaleTokens.pop();
+      }
+    }
+  }
 }
