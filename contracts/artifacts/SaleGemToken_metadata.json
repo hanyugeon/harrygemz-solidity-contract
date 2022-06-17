@@ -17,6 +17,152 @@
 				"type": "constructor"
 			},
 			{
+				"inputs": [
+					{
+						"internalType": "uint256",
+						"name": "_tokenId",
+						"type": "uint256"
+					}
+				],
+				"name": "getGemTokenInfo",
+				"outputs": [
+					{
+						"internalType": "uint256",
+						"name": "",
+						"type": "uint256"
+					},
+					{
+						"internalType": "uint256",
+						"name": "",
+						"type": "uint256"
+					},
+					{
+						"internalType": "uint256",
+						"name": "",
+						"type": "uint256"
+					}
+				],
+				"stateMutability": "view",
+				"type": "function"
+			},
+			{
+				"inputs": [
+					{
+						"internalType": "address",
+						"name": "_tokenOwner",
+						"type": "address"
+					}
+				],
+				"name": "getGemTokens",
+				"outputs": [
+					{
+						"components": [
+							{
+								"internalType": "uint256",
+								"name": "tokenId",
+								"type": "uint256"
+							},
+							{
+								"internalType": "uint256",
+								"name": "gemTokenRank",
+								"type": "uint256"
+							},
+							{
+								"internalType": "uint256",
+								"name": "gemTokenType",
+								"type": "uint256"
+							},
+							{
+								"internalType": "uint256",
+								"name": "tokenPrice",
+								"type": "uint256"
+							}
+						],
+						"internalType": "struct SaleGemToken.GemTokenData[]",
+						"name": "",
+						"type": "tuple[]"
+					}
+				],
+				"stateMutability": "view",
+				"type": "function"
+			},
+			{
+				"inputs": [
+					{
+						"internalType": "address",
+						"name": "_tokenOwner",
+						"type": "address"
+					}
+				],
+				"name": "getLatestMintedGemToken",
+				"outputs": [
+					{
+						"components": [
+							{
+								"internalType": "uint256",
+								"name": "tokenId",
+								"type": "uint256"
+							},
+							{
+								"internalType": "uint256",
+								"name": "gemTokenRank",
+								"type": "uint256"
+							},
+							{
+								"internalType": "uint256",
+								"name": "gemTokenType",
+								"type": "uint256"
+							},
+							{
+								"internalType": "uint256",
+								"name": "tokenPrice",
+								"type": "uint256"
+							}
+						],
+						"internalType": "struct SaleGemToken.GemTokenData",
+						"name": "",
+						"type": "tuple"
+					}
+				],
+				"stateMutability": "view",
+				"type": "function"
+			},
+			{
+				"inputs": [],
+				"name": "getSaleGemTokens",
+				"outputs": [
+					{
+						"components": [
+							{
+								"internalType": "uint256",
+								"name": "tokenId",
+								"type": "uint256"
+							},
+							{
+								"internalType": "uint256",
+								"name": "gemTokenRank",
+								"type": "uint256"
+							},
+							{
+								"internalType": "uint256",
+								"name": "gemTokenType",
+								"type": "uint256"
+							},
+							{
+								"internalType": "uint256",
+								"name": "tokenPrice",
+								"type": "uint256"
+							}
+						],
+						"internalType": "struct SaleGemToken.GemTokenData[]",
+						"name": "",
+						"type": "tuple[]"
+					}
+				],
+				"stateMutability": "view",
+				"type": "function"
+			},
+			{
 				"inputs": [],
 				"name": "mintGemToken",
 				"outputs": [
@@ -223,19 +369,19 @@
 			]
 		},
 		"contracts/MintGemToken.sol": {
-			"keccak256": "0x58afe663c1ca4ddb45e71e6d4617a5ce893c3ef0d58a37a70e0dba69943722b8",
+			"keccak256": "0x6c69d6af60d43ba31e1191a53699bc567b8640e793243bc3b57b582a9d5321ec",
 			"license": "MIT",
 			"urls": [
-				"bzz-raw://aec41075c4631d2aeb345eabcd4bbb31ac9f95b2df016f1cc888b896fd10dfec",
-				"dweb:/ipfs/QmXCkYqGkbzc5mmcmikp8S3HSqXYYa6smaxAtm9mc8L8hA"
+				"bzz-raw://6d643246babf2cae82f7cf0ea5dd4376cbdab675061ade7ca5d9d9b91641d123",
+				"dweb:/ipfs/QmWWLAN9a8EdN9mNPUJidJh6nbgLvk4fcv9NfSLEUpe7W1"
 			]
 		},
 		"contracts/SaleGemToken.sol": {
-			"keccak256": "0x777f0f41b338f404b10da6c52ffa99b4b07e5cc093a7278c5a070287cf77b88a",
+			"keccak256": "0x18f095a5b924f35eace5cdb50814e51b92c92adb99ca7dacfa3230a859cbd978",
 			"license": "MIT",
 			"urls": [
-				"bzz-raw://a6a119042fa6730f9f74d8304c148a3f15572b764bd2e625b43b641f3654ad46",
-				"dweb:/ipfs/QmVzXe3h7Jw5tDUyBozaRQ8ryRHUcdH1rUym9owmRphWbt"
+				"bzz-raw://21f9a9c611cbb2e806161917c2b352d5f7d57d498ba84fbc24bd45b7804c1c66",
+				"dweb:/ipfs/QmNxe7ru9Ftp3CeqjTrmNJoth9NZeZopYDgXKLQDBEbLsH"
 			]
 		}
 	},

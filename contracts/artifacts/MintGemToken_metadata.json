@@ -802,11 +802,11 @@
 			]
 		},
 		"contracts/MintGemToken.sol": {
-			"keccak256": "0x58afe663c1ca4ddb45e71e6d4617a5ce893c3ef0d58a37a70e0dba69943722b8",
+			"keccak256": "0x6c69d6af60d43ba31e1191a53699bc567b8640e793243bc3b57b582a9d5321ec",
 			"license": "MIT",
 			"urls": [
-				"bzz-raw://aec41075c4631d2aeb345eabcd4bbb31ac9f95b2df016f1cc888b896fd10dfec",
-				"dweb:/ipfs/QmXCkYqGkbzc5mmcmikp8S3HSqXYYa6smaxAtm9mc8L8hA"
+				"bzz-raw://6d643246babf2cae82f7cf0ea5dd4376cbdab675061ade7ca5d9d9b91641d123",
+				"dweb:/ipfs/QmWWLAN9a8EdN9mNPUJidJh6nbgLvk4fcv9NfSLEUpe7W1"
 			]
 		}
 	},
