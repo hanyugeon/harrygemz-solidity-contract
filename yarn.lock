@@ -7,10 +7,10 @@
   resolved "https://registry.yarnpkg.com/@openzeppelin/contracts/-/contracts-4.6.0.tgz#c91cf64bc27f573836dba4122758b4743418c1b3"
   integrity sha512-8vi4d50NNya/bQqCmaVzvHNmwHvS0OBKb7HNtuNwEE3scXWrP31fKQoGxNMT+KbzmrNZzatE3QK5p2gFONI/hg==
 
-"@remix-project/remixd@^0.6.2":
-  version "0.6.2"
-  resolved "https://registry.yarnpkg.com/@remix-project/remixd/-/remixd-0.6.2.tgz#a3ee0ff329c2b36222e5105bb66de531f450ed5e"
-  integrity sha512-Snqx7pIRiXk3vgQkfzFOHsOzLVUy1IkRmL73Ft8ObXkqAaeHlki5kAaK+lYpIEr/0dSUIUzs2isdS1gvqmNMWw==
+"@remix-project/remixd@^0.6.5":
+  version "0.6.5"
+  resolved "https://registry.yarnpkg.com/@remix-project/remixd/-/remixd-0.6.5.tgz#7e7f36d702f4df13391ea13883b9dbdadd343d01"
+  integrity sha512-B6a8n6K73jO0TP075/zJe/wsd1X5B9xBkjG2QnvOEa/wsQMbEAqkFKL6XujRGAaEmLgiuQxkqEMpg7O8CA7tLA==
   dependencies:
     "@remixproject/plugin" "^0.3.11"
     "@remixproject/plugin-api" "^0.3.11"
