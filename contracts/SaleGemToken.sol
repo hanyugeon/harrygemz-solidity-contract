@@ -61,7 +61,6 @@ contract SaleGemToken {
     }
   }
 
-  // 조회함수들은 가스비를 줄이기위해 조회함수(view)로 정의하기.
   function getGemTokens(address _tokenOwner) public view returns(GemTokenData[] memory) {
     uint256 balanceLength = mintGemToken.balanceOf(_tokenOwner);
 
