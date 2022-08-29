@@ -13,7 +13,7 @@ contract MintGemToken is ERC721Enumerable, Ownable {
 
   string public metadataURI;
 
-  // 10^18 Peb = 1 Klay
+  // 10^18 Peb = 1 matic
   uint256 gemTokenPrice = 1000000000000000000;
 
   constructor(string memory _name, string memory _symbol, string memory _metadataURI) ERC721(_name, _symbol) {
@@ -37,7 +37,7 @@ contract MintGemToken is ERC721Enumerable, Ownable {
   }
 
   function mintGemToken() public payable {
-    require(gemTokenPrice <= msg.value, "Not enough Klay.");
+    require(gemTokenPrice <= msg.value, "Not enough Matic.");
     require(MAX_TOKEN_COUNT > totalSupply(), "The mint limit has been exceeded.");
 
     uint256 tokenId = totalSupply() + 1;
